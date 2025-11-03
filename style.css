@@ -1,0 +1,125 @@
+/* style.css — custom styles, animations & utilities */
+
+/* font fallback */
+:root { --glass: rgba(255,255,255,0.04); }
+
+/* Buttons */
+.btn-primary {
+  @apply inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition transform;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(99,102,241,0.12); }
+
+.btn-outline {
+  @apply inline-block border border-indigo-500 text-indigo-200 px-4 py-2 rounded-lg font-medium transition;
+}
+.btn-outline:hover { transform: translateY(-3px); background: rgba(99,102,241,0.06); }
+
+.btn-ghost {
+  @apply inline-block text-indigo-200 px-4 py-2 rounded-lg font-medium;
+}
+
+/* layout custom */
+.animated-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: -20;
+  background: linear-gradient(120deg, rgba(12,10,22,0.6), rgba(30,15,60,0.6), rgba(18,24,39,0.6));
+  background-size: 400% 400%;
+  animation: slowGradient 14s ease infinite;
+}
+.animated-gradient-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 20vh;
+  background: linear-gradient(90deg, #6366f1, #a78bfa, #ec4899);
+  background-size: 200% 200%;
+  opacity: 0.5;
+  animation: gradientMove 5s ease infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+@keyframes gradientMove {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.animate-spin-slow {
+  animation: spin 3s linear infinite;
+}
+.animate-spin-reverse {
+  animation: spin-reverse 5s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+@keyframes spin-reverse {
+  100% { transform: rotate(-360deg); }
+}
+
+
+@keyframes slowGradient {
+  0% { background-position: 0% 50%;}
+  50% { background-position: 100% 50%;}
+  100% { background-position: 0% 50%;}
+}
+
+/* soft wave overlay — using SVG background (keeps size small) */
+.wave-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  z-index: -10;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="200" viewBox="0 0 1600 200"><path fill="%2310263a" fill-opacity="0.12" d="M0,120 C200,200 400,40 800,80 C1200,120 1400,40 1600,120 L1600 200 L0 200 Z"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 800px 200px;
+  animation: waveMove 18s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes waveMove {
+  from { background-position-x: 0; }
+  to { background-position-x: 800px; }
+}
+
+/* fade-in visible */
+.fade-section { opacity: 0; transform: translateY(20px); transition: all 700ms cubic-bezier(.2,.9,.2,1); }
+.fade-section.visible { opacity: 1; transform: translateY(0); }
+
+/* skill card */
+.skill-card {
+  @apply bg-gray-800/70 rounded-2xl p-4 text-center font-semibold text-indigo-100 shadow-md hover:scale-105 transition transform;
+}
+
+/* project card */
+.project-card {
+  @apply bg-gray-800/60 rounded-2xl p-4 flex flex-col sm:flex-row sm:justify-between items-start gap-4 shadow-md hover:shadow-lg transition;
+}
+
+/* certificate card */
+.cert-card {
+  @apply bg-gray-800/60 rounded-xl p-4 flex items-start gap-4 shadow-md;
+}
+.cert-icon { font-size: 28px; }
+
+/* small buttons */
+.btn-sm { @apply inline-block px-3 py-2 rounded-lg text-white font-medium; }
+
+/* nav link style */
+.nav-link {
+  color: rgba(226,232,240,0.9);
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background 180ms ease, color 180ms ease;
+}
+.nav-link:hover { background: rgba(99,102,241,0.12); color: white; }
+
+/* mobile menu override */
+#mobile-menu a { display: block; color: #cbd5e1; padding: 10px 0; }
+
+/* responsiveness tweaks */
+@media (max-width:640px) {
+  header img { width: 120px; height:120px; }
+  .nav-link { padding: 8px; }
+}
